@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Proyecto</string>
+    <string name="boton_crear">Boton</string>
 </resources>
