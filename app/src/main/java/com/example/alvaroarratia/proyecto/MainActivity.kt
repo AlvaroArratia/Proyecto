@@ -1,5 +1,6 @@
 package com.example.alvaroarratia.proyecto
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
             R.id.relativeLayout -> {
                 //enviarEvento(txtEvento.text.toString(), , getHora())
                 //txtEvento.setText("")
+                val intent = Intent(this, CrearActivity::class.java)
+                startActivity(intent)
             }
         }
     }
