@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         mDatabase = FirebaseDatabase.getInstance().reference
-        mMessageReferencia = FirebaseDatabase.getInstance().getReference("mensajes")
+        mMessageReferencia = FirebaseDatabase.getInstance().getReference("eventos")
 
         relativeLayout.setOnClickListener(this)
 

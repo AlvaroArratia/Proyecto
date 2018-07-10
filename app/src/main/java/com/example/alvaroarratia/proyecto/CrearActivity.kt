@@ -1,9 +1,13 @@
 package com.example.alvaroarratia.proyecto
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_crear.*
 import java.util.*
 
 class CrearActivity : AppCompatActivity() , View.OnClickListener {
@@ -16,11 +20,26 @@ class CrearActivity : AppCompatActivity() , View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_crear)
+
+        mDatabase = FirebaseDatabase.getInstance().reference
+        mMessageReferencia = FirebaseDatabase.getInstance().getReference("eventos")
+
+        btn_crear.setOnClickListener(this)
     }
 
-    override fun onClick(v: View?) {
-
+    override fun onClick(view: View?) {
+        val i = view!!.id
+        when (i) {
+            R.id.btn_crear -> {
+                enviarEvento(txtAlgo.text.toString(), txtAlgo2.text.toString(), getHora())
+                Log.e(TAG,"No escribe datos")
+                txtAlgo.setText("")
+                txtAlgo2.setText("")
+                //val intent = Intent(this, MainActivity::class.java)
+                //startActivity(intent)
+            }
+        }
     }
 
     /**
