@@ -29,9 +29,9 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
         mDatabase = FirebaseDatabase.getInstance().reference
         mMessageReferencia = FirebaseDatabase.getInstance().getReference("eventos")
 
-        relativeLayout.setOnClickListener(this)
+        //relativeLayout.setOnClickListener(this)
 
-        //escucharEvento()
+        escucharEvento()
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         eventos = ArrayList<Evento>()
@@ -45,24 +45,15 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
         val i = view!!.id
         when (i) {
             R.id.relativeLayout -> {
-                //enviarEvento(txtEvento.text.toString(), , getHora())
-                //txtEvento.setText("")
                 val intent = Intent(this, CrearActivity::class.java)
                 startActivity(intent)
             }
         }
     }
 
-    /**
-     * Envía mensaje a base de datos firebase
-     */
-    private fun enviarEvento(titulo: String, nombre: String, hora: String) {
-        val msj = Evento(titulo, nombre, hora)
-        mMessageReferencia!!.push().setValue(msj)
-    }
-
-    /*private fun escucharEvento() {
+    private fun escucharEvento() {
         val escuchadorEventos = object : ValueEventListener {
+
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (data in dataSnapshot.children) {
                     val msjData = data.getValue<Evento>(Evento::class.java)
@@ -72,12 +63,13 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
                     Log.e(TAG, "onDataChange: Message data is updated: " + msj!!.toString())
                 }
             }
-            override fun onCancelled(dataSnapshot: DatabaseError?) {
+
+            override fun onCancelled(p0: DatabaseError) {
                 Log.i(TAG, "Error al escuchar mensajes")
             }
         }
         mMessageReferencia!!.addValueEventListener(escuchadorEventos)
-    }*/
+    }
 
     private fun getHora(): String {
         var horas: String

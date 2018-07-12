@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class EventoAdapter(val mensajeList: ArrayList<Evento>): RecyclerView.Adapter<EventoAdapter.ViewHolder>()  {
+class EventoAdapter(val eventoList: ArrayList<Evento>): RecyclerView.Adapter<EventoAdapter.ViewHolder>()  {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.msjTitulo?.text = mensajeList[position].titulo
-        holder?.msjNombre?.text = mensajeList[position].nombre
-        holder?.txtHora?.text = mensajeList[position].hora
+        holder?.msjTitulo?.text = eventoList[position].titulo
+        holder?.msjNombre?.text = eventoList[position].nombre
+        holder?.txtHora?.text = eventoList[position].hora
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,12 +20,12 @@ class EventoAdapter(val mensajeList: ArrayList<Evento>): RecyclerView.Adapter<Ev
     }
 
     override fun getItemCount(): Int {
-        return mensajeList.size
+        return eventoList.size
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val msjTitulo = itemView.findViewById<TextView>(R.id.msjTitulo)
-        val msjNombre = itemView.findViewById<TextView>(R.id.msjNombre)
+        val msjTitulo = itemView.findViewById<TextView>(R.id.txtTitulo)
+        val msjNombre = itemView.findViewById<TextView>(R.id.txtNombre)
         val txtHora = itemView.findViewById<TextView>(R.id.txtHora)
     }
 }

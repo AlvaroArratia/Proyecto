@@ -14,7 +14,6 @@ class CrearActivity : AppCompatActivity() , View.OnClickListener {
 
     private var mDatabase: DatabaseReference? = null
     private var mMessageReferencia: DatabaseReference? = null
-    private var eventos: ArrayList<Evento>? = null
 
     private val TAG = "ChatActivity"
 
@@ -33,17 +32,23 @@ class CrearActivity : AppCompatActivity() , View.OnClickListener {
         when (i) {
             R.id.btn_crear -> {
                 enviarEvento(txtAlgo.text.toString(), txtAlgo2.text.toString(), getHora())
-                Log.e(TAG,"No escribe datos")
+                //Log.e(TAG,"No escribe datos")
                 txtAlgo.setText("")
                 txtAlgo2.setText("")
-                //val intent = Intent(this, MainActivity::class.java)
-                //startActivity(intent)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.btn_volver -> {
+                txtAlgo.setText("")
+                txtAlgo2.setText("")
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
         }
     }
 
     /**
-     * Envía mensaje a base de datos firebase
+     * Envía eventos a base de datos firebase
      */
     private fun enviarEvento(titulo: String, nombre: String, hora: String) {
         val msj = Evento(titulo, nombre, hora)
