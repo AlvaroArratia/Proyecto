@@ -25,12 +25,13 @@ class CrearActivity : AppCompatActivity() , View.OnClickListener {
         mMessageReferencia = FirebaseDatabase.getInstance().getReference("eventos")
 
         btn_crear.setOnClickListener(this)
+        btn_volver.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
         val i = view!!.id
         when (i) {
-            R.id.btn_crear -> {
+            R.id.btn_crear-> {
                 enviarEvento(txtAlgo.text.toString(), txtAlgo2.text.toString(), getHora())
                 //Log.e(TAG,"No escribe datos")
                 txtAlgo.setText("")
@@ -58,6 +59,12 @@ class CrearActivity : AppCompatActivity() , View.OnClickListener {
     private fun getHora(): String {
         var horas: String
         var min: String
+        var dia: String
+        var mes: String
+        var año: String
+        dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
+        mes = Calendar.getInstance().get(Calendar.MONTH).toString()
+        año = Calendar.getInstance().get(Calendar.YEAR).toString()
         if(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 10) {
             horas = "0" + Calendar.getInstance().get(Calendar.HOUR_OF_DAY).toString()
         } else {
@@ -68,7 +75,7 @@ class CrearActivity : AppCompatActivity() , View.OnClickListener {
         } else {
             min = Calendar.getInstance().get(Calendar.MINUTE).toString()
         }
-        return horas + ":" + min
+        return dia + "-" + mes + "-" + año + " / " + horas + ":" + min
     }
 
 }

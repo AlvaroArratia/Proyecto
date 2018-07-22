@@ -29,14 +29,14 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
         mDatabase = FirebaseDatabase.getInstance().reference
         mMessageReferencia = FirebaseDatabase.getInstance().getReference("eventos")
 
-        //relativeLayout.setOnClickListener(this)
-
         escucharEvento()
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         eventos = ArrayList<Evento>()
-
         var adapter = EventoAdapter(eventos!!)
+
+        adapter.setOnClickListener(this)
+
         recyclerView.adapter = adapter
 
     }
@@ -44,11 +44,13 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
     override fun onClick(view: View?) {
         val i = view!!.id
         when (i) {
-            R.id.relativeLayout -> {
+            R.id.recyclerView -> {
                 val intent = Intent(this, CrearActivity::class.java)
                 startActivity(intent)
             }
         }
+        //val intent = Intent(this, CrearActivity::class.java)
+        //startActivity(intent)
     }
 
     private fun escucharEvento() {

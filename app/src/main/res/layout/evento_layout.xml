@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="8dp"
         android:padding="7dp"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
@@ -34,9 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="250dp"
-        android:layout_toEndOf="@+id/txtNombre"
+        android:layout_marginEnd="40dp"
         android:textColor="#c0c0c0"
         app:layout_constraintBottom_toBottomOf="parent" />
 
