@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#52b100</color>
+    <color name="colorPrimaryDark">#3d8300</color>
+    <color name="letraGrande">#c64f00</color>
+    <color name="colorAccent">#c64f00</color>
+    <color name="blanco">#ffffff</color>
+    <color name="horaCreacion">#787878</color>
+    <color name="eventoPulsado">#a1a1a1</color>
 </resources>
+<!--#818181-->

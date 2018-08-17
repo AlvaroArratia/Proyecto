@@ -1,5 +1,38 @@
 <resources>
     <string name="app_name">Proyecto</string>
+
     <string name="crear_btn">Crear Evento</string>
-    <string name="volver_btn">Volver</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_cuenta">Crear Cuenta</string>
+    <string name="btn_volver">Volver</string>
+    <string name="btn_agregar">Agregar Evento</string>
+    <string name="btn_participar">Participar</string>
+    <string name="btn_participantes">Participantes</string>
+    <string name="btn_borrar">Borrar</string>
+    <string name="btn_editar">Editar</string>
+    <string name="btn_bar">Log Out</string>
+    <string name="btn_barUser">Usuario</string>
+    <string name="facebook">Continuar con Facebook</string>
+
+    <string name="txtEmail">Email</string>
+    <string name="txtPass">Contraseña</string>
+    <string name="txtNombreEvento">Nombre del evento</string>
+    <string name="txtNombreUsuario">Nombre del usuario</string>
+    <string name="txtNombreEvento2">Nombre del evento:</string>
+    <string name="txtNombreUsuario1">Nombre del usuario:</string>
+    <string name="txtSeparadorHra"> - </string>
+    <string name="txtHoraDesde">Desde</string>
+    <string name="txtHoraHasta">Hasta</string>
+    <string name="txtHoraEvento">Hora:</string>
+    <string name="txtCategoria">Categoria:</string>
+
+    <string name="facebook_app_id">244088202901689</string>
+    <string name="fb_login_protocol_scheme">fb244088202901689</string>
+
+    <string name="welcome">Bienvenido</string>
+    <string name="cancel_login">Se canceló la operación</string>
+    <string name="error_login">Ocurrió un error al ingresar</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="firebase_error_login">Error al iniciar sesión en Firebase</string>
+
 </resources>
