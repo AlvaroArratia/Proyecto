@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/blanco">
 
-    <Button
-        android:id="@+id/btn_volver"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginStart="2dp"
-        android:background="@drawable/boton_pulsado"
-        android:text="@string/btn_volver"
-        android:textColor="@color/blanco"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/txtHoraEvento2"
         android:layout_width="76dp"
@@ -84,14 +69,14 @@
         android:id="@+id/btn_crear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginEnd="2dp"
         android:layout_marginStart="2dp"
         android:background="@drawable/boton_pulsado"
         android:text="@string/crear_btn"
         android:textColor="@color/blanco"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_volver"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />

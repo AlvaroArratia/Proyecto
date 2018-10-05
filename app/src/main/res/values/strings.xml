@@ -35,4 +35,7 @@
     <string name="logout">Cerrar sesión</string>
     <string name="firebase_error_login">Error al iniciar sesión en Firebase</string>
 
+    <string name="btn_si">Borrar</string>
+    <string name="btn_no">Cancelar</string>
+
 </resources>

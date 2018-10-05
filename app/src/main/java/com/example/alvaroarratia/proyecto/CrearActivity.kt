@@ -13,8 +13,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import android.widget.Toast
+import java.util.regex.Pattern
 
 
 class CrearActivity : AppCompatActivity(), View.OnClickListener {
@@ -23,7 +23,7 @@ class CrearActivity : AppCompatActivity(), View.OnClickListener {
     private var mMessageReferencia: DatabaseReference? = null
     private var cat: String? = null
     private var spinner: Spinner? = null
-    private var userEmail: String? = null
+    private var uid: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +32,14 @@ class CrearActivity : AppCompatActivity(), View.OnClickListener {
         mDatabase = FirebaseDatabase.getInstance().reference
         mMessageReferencia = FirebaseDatabase.getInstance().getReference("eventos")
 
-        userEmail = intent.getStringExtra("emailUser")
-        Log.i("email", userEmail)
+        uid = intent.getStringExtra("userId")
+        Log.i("userId", uid)
 
         spinner = findViewById<View>(R.id.spinner_cat) as Spinner
         val categorias = arrayOf("Honor", "Primera", "Segunda", "Tercera", "Cuarta")
         spinner!!.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categorias)
 
         spinner()
-        btn_volver.setOnClickListener(this)
         btn_crear.setOnClickListener(this)
     }
 
@@ -61,18 +60,21 @@ class CrearActivity : AppCompatActivity(), View.OnClickListener {
         val i = view!!.id
         when (i) {
             R.id.btn_crear -> {
-                enviarEvento(txtNombreEvento.text.toString(), txtNombreUsuario.text.toString(), getHora(),
-                        cat!!, txtHoraDesde.text.toString(), txtHoraHasta.text.toString(), userEmail!!)
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                finish()
-            }
-            R.id.btn_volver -> {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                finish()
+                if (txtNombreEvento.text.toString().equals("") ||
+                        txtNombreUsuario.text.toString().equals("") ||
+                        txtHoraDesde.text.toString().equals("") ||
+                        txtHoraHasta.text.toString().equals("") ||
+                        !verificadorHora(txtHoraDesde.text.toString(), txtHoraHasta.text.toString())) {
+                    Toast.makeText(this, "Complete todos los datos correctamente.",
+                            Toast.LENGTH_SHORT).show()
+                } else {
+                    enviarEvento(txtNombreEvento.text.toString(), txtNombreUsuario.text.toString(), getHora(),
+                            cat!!, txtHoraDesde.text.toString(), txtHoraHasta.text.toString(), uid!!)
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                    finish()
+                }
             }
             else -> {
                 onBackPressed()
@@ -89,8 +91,8 @@ class CrearActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun enviarEvento(titulo: String, nombre: String, hora: String, categoria: String,
-                             horaInicio: String, horaFin: String, eMail: String) {
-        val ev = Evento(titulo, nombre, hora, categoria, horaInicio, horaFin, eMail)
+                             horaInicio: String, horaFin: String, uid: String) {
+        val ev = Evento(titulo, nombre, hora, categoria, horaInicio, horaFin, uid)
         mMessageReferencia!!.push().setValue(ev)
     }
 
@@ -124,6 +126,19 @@ class CrearActivity : AppCompatActivity(), View.OnClickListener {
             min = Calendar.getInstance().get(Calendar.MINUTE).toString()
         }
         return dia + "/" + mes + "/" + año + "\n" + horas + ":" + min
+    }
+
+    fun verificadorHora(desde: String, hasta: String): Boolean {
+        var confirm = false
+        val patron = Pattern.compile("^([01]?[0-9]|2[0-3]):[0-5][0-9]\$")
+        val horaDesde = patron.matcher(desde)
+        val horaHasta = patron.matcher(hasta)
+        if (horaDesde.matches() && horaHasta.matches()) {
+            confirm = true
+        } else if (!horaDesde.matches() || !horaHasta.matches()) {
+            confirm = false
+        }
+        return confirm
     }
 
 }

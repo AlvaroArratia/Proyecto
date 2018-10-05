@@ -11,6 +11,10 @@ import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
 import android.widget.Toast
 
+
+
+
+
 class EventoCreadorActivity: AppCompatActivity(), View.OnClickListener {
 
     private var eventoAtributos: ArrayList<String>? = null
@@ -43,16 +47,12 @@ class EventoCreadorActivity: AppCompatActivity(), View.OnClickListener {
         val i = view!!.id
         when (i) {
             R.id.btn_participantes -> {
-                val intent = Intent(this, UsuarioActivity::class.java)
-                startActivity(intent)
+                //val intent = Intent(this, OtraClase::class.java)
+                //startActivity(intent)
                 //TODO("Hacer la solicitud y cambiar la clase del intent")
             }
             R.id.btn_borrarEvento -> {
                 borrarEvento(eventoAtributos!![6])
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                finish()
             }
             R.id.btn_editarEvento -> {
                 val intent = Intent(this, EditarEventoActivity::class.java)
@@ -73,9 +73,18 @@ class EventoCreadorActivity: AppCompatActivity(), View.OnClickListener {
         finish()
     }
 
-    fun borrarEvento(id: String) {
-        mMessageReferencia!!.child(id).removeValue()
-        //TODO("Agregar un alert")
+    fun borrarEvento(ide: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("¿Desea borrar este evento?").setTitle("Confirmacion")
+        builder.setPositiveButton(R.string.btn_si, { dialog, id ->
+            mMessageReferencia!!.child(ide).removeValue()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish() })
+        builder.setNegativeButton(R.string.btn_no, { dialog, id -> })
+        val dialog = builder.create()
+        dialog.show()
     }
 
 }

@@ -65,15 +65,13 @@ class MainActivity: AppCompatActivity(), View.OnClickListener {
         when (i) {
             R.id.btn_agregar -> {
                 val intent = Intent(this, CrearActivity::class.java)
-                Log.i("Email user: ", user!!.email)
-                intent.putExtra("emailUser", user!!.email)
+                intent.putExtra("userId", user!!.uid)
                 startActivity(intent)
             }
             else -> {
                 irAEvento(view)
             }
         }
-        //TODO("Hacer el match de datos para saber a que activity hacer el intent")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -97,18 +95,17 @@ class MainActivity: AppCompatActivity(), View.OnClickListener {
         Log.i("Posicion array", "" + position + "")
         val event = eventos!![position]
         val key = keys!![position]
-        Log.i("evento objeto", event.eMail)
         val eventoAtributos = arrayListOf(event.titulo, event.nombre, event.categoria,
-                event.horaInicio, event.horaFin, event.hora, key, event.eMail)
-        //if (event.eMail.equals(user!!.email)) {
+                event.horaInicio, event.horaFin, event.hora, key, event.uid)
+        if (event.uid.equals(user!!.uid)) {
             val intent = Intent(this, EventoCreadorActivity::class.java)
             intent.putExtra("eventoSeleccionado", eventoAtributos)
             startActivity(intent)
-        /*} else if (event.eMail != user!!.email) {
+        } else if (event.uid != user!!.uid) {
             val intent = Intent(this, EventoParticipanteActivity::class.java)
             intent.putExtra("eventoSeleccionado", eventoAtributos)
             startActivity(intent)
-        }*/
+        }
     }
 
     private fun escucharEvento() {

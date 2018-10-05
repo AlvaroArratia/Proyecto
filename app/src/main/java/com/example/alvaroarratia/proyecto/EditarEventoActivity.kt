@@ -42,7 +42,6 @@ class EditarEventoActivity: AppCompatActivity(), View.OnClickListener {
         spinner!!.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categorias)
 
         spinner()
-        btn_volver.setOnClickListener(this)
         btn_crear.setOnClickListener(this)
     }
 
@@ -65,13 +64,6 @@ class EditarEventoActivity: AppCompatActivity(), View.OnClickListener {
         when (i) {
             R.id.btn_crear -> {
                 editarEvento()
-            }
-            R.id.btn_volver -> {
-                val intent = Intent(this, EventoCreadorActivity::class.java)
-                intent.putExtra("eventoSeleccionado", eventoAtributos)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(intent)
-                finish()
             }
             else -> {
                 onBackPressed()
@@ -126,14 +118,14 @@ class EditarEventoActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     private fun enviarEvento(titulo: String, nombre: String, hora: String, categoria: String,
-                             horaInicio: String, horaFin: String, eMail: String) {
+                             horaInicio: String, horaFin: String, uid: String) {
         eventoAtributos!![0]= titulo
         eventoAtributos!![1]= nombre
         eventoAtributos!![2]= categoria
         eventoAtributos!![3]= horaInicio
         eventoAtributos!![4]= horaFin
 
-        val ev = Evento(titulo, nombre, hora, categoria, horaInicio, horaFin, eMail)
+        val ev = Evento(titulo, nombre, hora, categoria, horaInicio, horaFin, uid)
         mMessageReferencia!!.child(eventoAtributos!![6]).setValue(ev)
     }
 }
